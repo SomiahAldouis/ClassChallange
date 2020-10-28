@@ -10,11 +10,7 @@ class StudentViewModel: ViewModel() {
             val student = Student()
             student.studentName = "Somiah Aldouis $i"
             student.studentNumber = i
-            student.studentResult = if (i%2==0){
-                true
-            }else{
-                false
-            }
+            student.studentResult = true
 
             students += student
         }
@@ -29,5 +25,6 @@ class StudentViewModel: ViewModel() {
         studentIn.studentNumber = student.studentNumber
         studentIn.studentResult = student.studentResult
 
+        students += studentIn
     }
 }

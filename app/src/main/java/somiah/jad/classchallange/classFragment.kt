@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class classFragment : Fragment() {
+class classFragment : Fragment(),NewStudentDialog.Callbacks {
     private lateinit var classButton: Button
     private val viewModel:StudentViewModel by lazy{
         ViewModelProviders.of(this).get(StudentViewModel::class.java)
@@ -44,11 +44,16 @@ override fun onCreateView(
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+    private var callBacks: NewStudentDialog.Callbacks?=null
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add_new_item -> {
-                val student = Student()
-                viewModel.addStudent(student)
+
+                NewStudentDialog().apply {
+                    setTargetFragment(this@classFragment, 0)
+                    show(this@classFragment.requireFragmentManager(),"Input")
+                }
+
                 true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -87,7 +92,7 @@ override fun onCreateView(
         val students = viewModel.students
         adapter = Adapter(students)
         recyclerView.adapter = adapter
-        
+
     }
     // ********************* recycler view End ********************* //
 
@@ -95,6 +100,12 @@ override fun onCreateView(
         fun newInstance(): classFragment {
             return classFragment()
         }
+    }
+
+    override fun onStudentAdd(student: Student) {
+       // val student = Student()
+        viewModel.addStudent(student)
+     //   callBacks?.onStudentAdd(student)
     }
 
 
