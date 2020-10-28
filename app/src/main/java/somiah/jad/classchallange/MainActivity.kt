@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+    // ********************* fragment class begin ********************* //
     val currentFragment =
         supportFragmentManager.findFragmentById(R.id.fragment)
     if (currentFragment == null) {
@@ -18,4 +18,5 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment, fragment)
             .commit()
     }
+    // ********************* fragment class End ********************* //
 }}

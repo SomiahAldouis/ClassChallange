@@ -18,7 +18,16 @@ class StudentViewModel: ViewModel() {
 
             students += student
         }
+
+
     }
 
+    fun addStudent(student: Student) {
+        val studentIn = Student()
 
+        studentIn.studentName = student.studentName
+        studentIn.studentNumber = student.studentNumber
+        studentIn.studentResult = student.studentResult
+
+    }
 }
